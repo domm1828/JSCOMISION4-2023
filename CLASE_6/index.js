@@ -1,3 +1,7 @@
+/** EVALUAR QUE ELE USUARIO NO INGRESE INPUT VACIOS
+ * EVALUAR QUE EL DNI NO SE REPITA
+ * VERIFICAR LA FUNCION DE ELMINADO EN EL FILTER, O CONSIDERACIÓN
+ */
 let dataPerson = [];
 
 const addDataPerson = (firstName, lastName, age, status , dni) => {
