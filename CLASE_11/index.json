@@ -1,0 +1,5 @@
+{
+    "nombre":"Ejemplo",
+    "ejemplo":{ "a":"12","b":4},
+    "nombres":["juan","pedro","perez"]
+}
