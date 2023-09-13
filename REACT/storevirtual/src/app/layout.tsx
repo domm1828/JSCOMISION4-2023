@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import 'bootstrap/dist/css/bootstrap.css'
 import NavBar from './components/nav-bar';
+import { ThemeContextProvider } from './context/theme';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <NavBar/>
-        {children}
+        <ThemeContextProvider>
+          {children}
+        </ThemeContextProvider>
       </body>
     </html>
   )

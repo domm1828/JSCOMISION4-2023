@@ -1,7 +1,12 @@
-const about = ()=>{
+'use client'
 
+import { useThemeContext } from "../context/theme";
+
+const about = ()=>{
+const {color} = useThemeContext();
     return (
-        <div>Page About</div>
+     
+        <div className={color+' h-screen'}>Page About    {color} </div>
     );
     
 }
