@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
-export const ListRegister = ({ contacts }) => {
+export const ListRegister = ({ contacts, handleDeleteContact, updateIndex }) => {
 
     return (<>
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -26,10 +26,10 @@ export const ListRegister = ({ contacts }) => {
                                 <td className="px-6 py-3">{contact.email}</td>
                                 <td className="px-6 py-3">{contact.phone}</td>
                                 <td className="px-6 py-3">
-                                    <button className="m-1 hover:bg-red-500 hover:text-white rounded-md px-3 py-2 text-sm font-semibold bg-white text-gray-900">
+                                    <button onClick={()=>{updateIndex(index)}} className="m-1 hover:bg-red-500 hover:text-white rounded-md px-3 py-2 text-sm font-semibold bg-white text-gray-900">
                                         <FontAwesomeIcon icon={faPencilAlt} className='h-6 w-6' />
                                     </button>
-                                    <button className='m-1 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+                                    <button onClick={()=>{handleDeleteContact(index)}} className='m-1 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
                                         <FontAwesomeIcon icon={faTrashAlt} className='h-6 w-6' />
                                     </button>
                                 </td>

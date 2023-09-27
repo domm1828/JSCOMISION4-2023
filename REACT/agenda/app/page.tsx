@@ -5,6 +5,14 @@ import { useState,useEffect } from 'react';
 export default function Home() {
 
   const [contacts,setContacts] = useState([]);
+  const [indexUpdate,setIndexUpdate]=useState(-1);
+
+  const handleDeleteContact = (index:number)=>{
+    contacts.splice(index,1);
+    setContacts([...contacts]);
+
+  }
+
 
   useEffect(()=>{
     console.log(contacts);
@@ -15,11 +23,11 @@ export default function Home() {
    
    <div className="grid grid-cols-2 gap-4">
       <div>
-        <FormRegister contacts={contacts} updateContacts={setContacts} />
+        <FormRegister contacts={contacts} updateContacts={setContacts} updateContact={indexUpdate} />
       </div>
      
       <div>
-       <ListRegister contacts={contacts} /> 
+       <ListRegister key={'listContact'} contacts={contacts} handleDeleteContact={handleDeleteContact} updateIndex={setIndexUpdate} /> 
       </div>
     </div>
 
