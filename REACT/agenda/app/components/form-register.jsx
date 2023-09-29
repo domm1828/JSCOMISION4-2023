@@ -22,27 +22,59 @@ export const FormRegister = ({ contacts, updateContacts, updateContact }) => {
         inputNameRef.current.focus();
     }
 
+    const validateDataEmail = (email) => {
+        // -1 si no esta y las position si esta
+        return contacts.findIndex((contact) => {
+            return contact.email.toLowerCase() == email.toLowerCase();
+        })
+    }
+    const validateDataPhone = (phone) => {
+        // -1 si no esta y las position si esta
+        return contacts.findIndex((contact) => {
+            return contact.phone.toLowerCase() == phone.toLowerCase();
+        })
+    }
+
     const handelSubmit = () => {
 
         if (edit == false) {
-            let contact = [{
-                name,
-                lastName,
-                email,
-                phone
-            }];
-            updateContacts([...contacts, ...contact]);
+            if (validateDataPhone(phone) == -1 && validateDataEmail(email) == -1) {
+                let contact = [{
+                    name,
+                    lastName,
+                    email,
+                    phone
+                }];
+                updateContacts([...contacts, ...contact]);
+
+                setMessage('Data save');
+                setShowAlert('');
+                handelCancel();
+            }
+            else {
+
+                setMessage('Email and Phone Repeat');
+                setShowAlert('');
+            }
         }
         else {
-            contacts[updateContact].name = name;
-            contacts[updateContact].lastName = lastName;
-            contacts[updateContact].email = email;
-            contacts[updateContact].phone = phone;
-            updateContacts([...contacts]);
+            if ((validateDataPhone(phone) == -1 || validateDataPhone(phone) == updateContact ) 
+                && (validateDataEmail(email) == -1 || validateDataEmail(email) == updateContact ) ) {
+                contacts[updateContact].name = name;
+                contacts[updateContact].lastName = lastName;
+                contacts[updateContact].email = email;
+                contacts[updateContact].phone = phone;
+                updateContacts([...contacts]);
+                setMessage('Data save');
+                setShowAlert('');
+                handelCancel();
+            }
+            else {
+
+                setMessage('Email and Phone Repeat');
+                setShowAlert('');
+            }
         }
-        setMessage('Data save');
-        setShowAlert('');
-        handelCancel();
 
     }
 
@@ -57,14 +89,14 @@ export const FormRegister = ({ contacts, updateContacts, updateContact }) => {
         console.log(updateContact);
     }, [updateContact])
 
-    useEffect(()=>{
-        if(showAlert != 'hidden'){
+    useEffect(() => {
+        if (showAlert != 'hidden') {
             const timer = setTimeout(() => {
                 setShowAlert('hidden');
             }, 3000);
             return () => clearTimeout(timer);
         }
-    },[showAlert])
+    }, [showAlert])
 
     return (
         <>
@@ -74,7 +106,7 @@ export const FormRegister = ({ contacts, updateContacts, updateContact }) => {
 
 
                 <div className={showAlert + " flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"} role="alert">
-                    <div className="ml-3 text-sm font-medium">   <span className="font-medium">Success alert!</span>  {message}
+                    <div className="ml-3 text-sm font-medium"> {message}
                     </div>
                     <button onClick={() => { setShowAlert('hidden') }} type="button" className="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700">
                         <span class="sr-only">Close</span>
