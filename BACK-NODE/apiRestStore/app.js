@@ -30,7 +30,7 @@ app.post('/hello',(req,resp)=>{
     resp.send('Peticion POST HELLO');
 })
 
-app.use('/api/users',isActive,userRouters);
+app.use('/api/users',userRouters);
 
 
 app.listen(port,()=>{
