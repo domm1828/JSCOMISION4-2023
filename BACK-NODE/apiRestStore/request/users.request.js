@@ -6,7 +6,8 @@ const validateUser = (req,res,next)=>{
     const schema = Joi.object({
         email:Joi.string().email().max(45).required().messages({
             'string.empty':'El email es requerido',
-            'string.email':'Debes ingresar un correo valido'
+            'string.email':'Debes ingresar un correo valido',
+            'string.max':'El email no debe contener mas de 45 caracteres'
         }),
         password:Joi.string().min(6).max(45).required(),
         dni:Joi.number().integer(),

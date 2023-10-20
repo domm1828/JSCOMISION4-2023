@@ -15,7 +15,7 @@ module.exports = {
         unique:true,
       },
       password: {
-        type: Sequelize.STRING(45),
+        type: Sequelize.TEXT,
         allowNull:false
       },
       first_name: {
