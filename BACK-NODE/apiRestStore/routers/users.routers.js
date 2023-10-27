@@ -8,7 +8,7 @@ const validateUser = require('../request/users.request');
  * ROUTER DYNAMIC
  */
 
-routers.get('/:id/:name',filterUser);
+ 
 
 routers.get('/', getAll);
 
