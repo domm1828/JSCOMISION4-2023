@@ -19,10 +19,22 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     stock: DataTypes.INTEGER,
     amount: DataTypes.FLOAT,
-    photo: DataTypes.STRING
+    photo: {
+      type: DataTypes.STRING,
+      get(){
+        return this.getDataValue('photo') ? `http://localhost:5600/${this.getDataValue('photo')}` :``
+      }
+    },
+    total:{
+      type: new DataTypes.VIRTUAL(DataTypes.FLOAT,['amount','stock']),
+      get(){
+        return `${this.amount*this.stock}`
+      }
+    }
   }, {
     sequelize,
     modelName: 'product',
+    paranoid:true
   });
   return product;
 };

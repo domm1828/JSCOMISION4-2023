@@ -13,7 +13,7 @@ routers.get('/', getAll);
 routers.post('/',uploadStorage.single("photo"),createProduct);
 
 /** UPDATE PRODUCTS */
-routers.put('/:id',updateProduct);
+routers.put('/:id',uploadStorage.single("photo"),updateProduct);
 
 /** DELETE PRODUCT */
 routers.delete('/:id',deleteProduct);

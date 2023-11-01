@@ -19,7 +19,7 @@ const filterValidate = (req, file, cb) => {
         cb(null, true);
     }
     else {
-         cb(new Error('Error en tipo de imagen'),false)
+         cb(new Error('No se puede subir este tipo de archivo: '+file.mimetype),false)
     }
 
 }
