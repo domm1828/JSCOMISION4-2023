@@ -6,7 +6,7 @@ const getAll = async (req, resp) => {
     try {
 
         let filterParam = [];
-        let filter = { attributes: { exclude: ['password'] } }
+        let filter = { attributes: { exclude: ['password'] }, include:['address'] }
         if (req.query.first_name) {
             filterParam.push({
                 first_name: {

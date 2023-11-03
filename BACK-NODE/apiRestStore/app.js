@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 5600;
 const userRouters = require('./routers/users.routers');
 const productRouters = require('./routers/products.routers');
+const addressRouters = require('./routers/address.routers');
 const isActive = require('./middleware/isActive.middleware');
 
 /** ERROR HANDLER */
@@ -37,7 +38,9 @@ app.post('/hello',(req,resp)=>{
 })
 
 app.use('/api/users',userRouters);
-app.use('/api/products',productRouters)
+app.use('/api/products',productRouters);
+app.use('/api/address',addressRouters);
+
 
 app.use(errorHandler);
 
