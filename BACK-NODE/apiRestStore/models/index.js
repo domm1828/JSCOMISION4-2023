@@ -39,7 +39,7 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
+//usersId
 db.user.hasMany(db.address_user,{foreignKey:'users_id',as:'address'});
 db.address_user.belongsTo(db.user,{foreignKey:'users_id',as:'userAddress'});
 

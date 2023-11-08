@@ -5,6 +5,7 @@ const port = 5600;
 const userRouters = require('./routers/users.routers');
 const productRouters = require('./routers/products.routers');
 const addressRouters = require('./routers/address.routers');
+const loginRouters = require("./routers/login.routes");
 const isActive = require('./middleware/isActive.middleware');
 
 /** ERROR HANDLER */
@@ -40,6 +41,8 @@ app.post('/hello',(req,resp)=>{
 app.use('/api/users',userRouters);
 app.use('/api/products',productRouters);
 app.use('/api/address',addressRouters);
+
+app.use('/api/login',loginRouters);
 
 
 app.use(errorHandler);

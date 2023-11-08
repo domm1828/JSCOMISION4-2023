@@ -3,6 +3,7 @@ const { createProduct, updateProduct, deleteProduct, getAll } = require('../cont
 
 const uploadStorage = require('../config/upload.single');
 const validateProducts = require('../request/products.request');
+const validateToken = require('../middleware/auth.jwt.middleware');
 const routers = express.Router();
  
  
@@ -10,12 +11,12 @@ const routers = express.Router();
 routers.get('/', getAll);
 
 /** CREATE PRODUCT */
-routers.post('/',uploadStorage.single("photo"),createProduct);
+routers.post('/',validateToken,uploadStorage.single("photo"),createProduct);
 
 /** UPDATE PRODUCTS */
-routers.put('/:id',uploadStorage.single("photo"),updateProduct);
+routers.put('/:id',validateToken,uploadStorage.single("photo"),updateProduct);
 
 /** DELETE PRODUCT */
-routers.delete('/:id',deleteProduct);
+routers.delete('/:id',validateToken,deleteProduct);
 
 module.exports = routers;
