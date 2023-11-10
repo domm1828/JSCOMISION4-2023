@@ -6,7 +6,10 @@ const userRouters = require('./routers/users.routers');
 const productRouters = require('./routers/products.routers');
 const addressRouters = require('./routers/address.routers');
 const loginRouters = require("./routers/login.routes");
+const userMongoRouters = require('./routers/mongo/users.routers');
 const isActive = require('./middleware/isActive.middleware');
+
+require('./config/mongodb.config');
 
 /** ERROR HANDLER */
 const errorHandler = (error,request,response,next) =>{
@@ -43,6 +46,8 @@ app.use('/api/products',productRouters);
 app.use('/api/address',addressRouters);
 
 app.use('/api/login',loginRouters);
+
+app.use('/api/mongo/users',userMongoRouters);
 
 
 app.use(errorHandler);
