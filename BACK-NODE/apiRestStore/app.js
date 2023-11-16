@@ -8,7 +8,7 @@ const addressRouters = require('./routers/address.routers');
 const loginRouters = require("./routers/login.routes");
 const userMongoRouters = require('./routers/mongo/users.routers');
 const isActive = require('./middleware/isActive.middleware');
-
+const cors = require('cors')
 require('./config/mongodb.config');
 
 /** ERROR HANDLER */
@@ -20,7 +20,7 @@ const errorHandler = (error,request,response,next) =>{
  * GET POST PUT PATCH DELETE HEADER OPTIONS
  * app.METHOD(PATH,FUNCTION HANDLER)
  */
-
+app.use(cors())
 /** MODEL(DATA STRUCTURE) VIEW(UI) CONTROLLER(LOGIC) */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
