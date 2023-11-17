@@ -7,6 +7,7 @@ const productRouters = require('./routers/products.routers');
 const addressRouters = require('./routers/address.routers');
 const loginRouters = require("./routers/login.routes");
 const userMongoRouters = require('./routers/mongo/users.routers');
+const addressMongoRouters = require('./routers/mongo/address.routers')
 const isActive = require('./middleware/isActive.middleware');
 const cors = require('cors')
 require('./config/mongodb.config');
@@ -48,6 +49,7 @@ app.use('/api/address',addressRouters);
 app.use('/api/login',loginRouters);
 
 app.use('/api/mongo/users',userMongoRouters);
+app.use('/api/mongo/address',addressMongoRouters);
 
 
 app.use(errorHandler);

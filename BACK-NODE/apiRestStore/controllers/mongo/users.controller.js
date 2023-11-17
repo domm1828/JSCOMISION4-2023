@@ -5,7 +5,32 @@ const getAll = async (req, resp) => {
 
     try {
 
-        let user = await User.find();
+        let filter = { 
+        };
+        if(req.query.first_name){
+            let regex = new RegExp(req.query.first_name)
+            console.log(regex)
+            filter = {
+                $or:[
+                    {first_name:regex},
+                    {last_name:regex}
+                ]
+                 
+            };
+        }
+        /**
+         * donde contenga el criterio /criterio/
+         * donde comienze con el criterio /^criterio/
+         * donde finalize con el criterio /criterio$/
+         * donde sea igual
+         * $regex :{ criterio}
+         *   name:{ $regex:/criterio/i }
+         * sort ordenamiento asc 1 desc -1
+         * $or :[ ]
+         * $and :[]
+         */
+        
+        let user = await User.find(filter,{first_name:1}).sort({first_name:1});
         resp.status(200).json({ error: false, message: 'FIND ALL', data: user });
     }
     catch (e) {
